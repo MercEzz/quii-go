@@ -37,3 +37,11 @@
 - When a function returns a pointer to something, you need to make sure you check if it's nil or you might raise a runtime exception - the compiler won't help you here.
 
 - Useful for when you want to describe a value that could be missing
+
+## maps
+
+- A map value is a pointer to a runtime.hmap structure.
+
+- An interesting property of maps is that you can modify them without passing as an address to it (e.g &myMap)
+
+- Go has a built-in function delete that works on maps. It takes two arguments and returns nothing. The first argument is the map and the second is the key to be removed.
