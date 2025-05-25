@@ -51,3 +51,4 @@ func TestConfigurableSleeper(t *testing.T) {
 	sleeper := ConfigurableSleeper{sleepTime, spyTime.Sleep}
 	sleeper.Sleep()
 }
+

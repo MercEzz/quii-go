@@ -45,3 +45,11 @@
 - An interesting property of maps is that you can modify them without passing as an address to it (e.g &myMap)
 
 - Go has a built-in function delete that works on maps. It takes two arguments and returns nothing. The first argument is the map and the second is the key to be removed.
+
+## sync
+
+- Sync provides basic synchronization primitives that help manage councurrent programming.
+
+- Mutex allows us to add locks to our data. Which help us avoid conflict in mutation of same variable.
+
+- WaitGroup is a means of waiting for goroutines to finish jobs.
