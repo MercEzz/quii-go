@@ -53,3 +53,11 @@
 - Mutex allows us to add locks to our data. Which help us avoid conflict in mutation of same variable.
 
 - WaitGroup is a means of waiting for goroutines to finish jobs.
+
+### go vet
+
+- use go vet to check your build scripts. It alerts you with any subtle bugs in the code.
+
+## context
+
+- The context package provides functions to derive new Context values from existing ones. These values form a tree: when a Context is canceled, all Contexts derived from it are also canceled.
