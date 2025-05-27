@@ -1,31 +1,42 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"net/http"
 )
 
 type Store interface {
-	Fetch() string
-	Cancel()
+	Fetch(ctx context.Context) (string, error)
+}
+
+type SpyResponseWriter struct {
+	written bool
+}
+
+func (s *SpyResponseWriter) Header() http.Header {
+	s.written = true
+	return nil
+}
+
+func (s *SpyResponseWriter) Write([]byte) (int, error) {
+	s.written = true
+	return 0, nil
+}
+
+func (s *SpyResponseWriter) WriteHeader (statusCode int) {
+	s.written = true
 }
 
 func Server(store Store) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		ctx := r.Context()
-
-		data := make(chan string, 1)
-
-		go func() {
-			data <- store.Fetch()
-		}()
-
-		select{
-		case d := <-data:
-			fmt.Fprint(w, d)
-		case <-ctx.Done():
-			store.Cancel()
+		data, err := store.Fetch(r.Context())
+		
+		if err != nil {
+			return
 		}
+
+		fmt.Fprint(w, data)
 	}
 }
 
