@@ -4,7 +4,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/quii/learn-go-with-tests/math/v1/clockface"
+	clockface "go.mod/clockface"
 )
 
 func TestSecondHandAtMidnight(t *testing.T) {
@@ -17,4 +17,3 @@ func TestSecondHandAtMidnight(t *testing.T) {
 		t.Errorf("Got %v, wanted %v", got, want)
 	}
 }
-
